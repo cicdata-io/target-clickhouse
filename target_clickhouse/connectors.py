@@ -100,6 +100,7 @@ class ClickhouseConnector(SQLConnector):
             )
         elif type(sql_type) == sqlalchemy.types.INTEGER:
             minimum = jsonschema_type.get("minimum")
+            self.logger.info(f'{minimum}, {jsonschema_type}, {jsonschema_type.get("mininum")}')
             if minimum and minimum == 0:
                 sql_type = typing.cast(
                     sqlalchemy.types.TypeEngine, clickhouse_sqlalchemy_types.UInt64(),
@@ -184,7 +185,7 @@ class ClickhouseConnector(SQLConnector):
         for property_name, property_jsonschema in properties.items():
             is_primary_key = property_name in primary_keys
             sql_type = self.to_sql_type(property_jsonschema)
-            self.logger.info(f'info {property_name}, {property_jsonschema}, {sql_type}')
+            self.logger.info(f'info:: {property_name}, {property_jsonschema}, {sql_type}')
             columns.append(
                 Column(
                     property_name,
