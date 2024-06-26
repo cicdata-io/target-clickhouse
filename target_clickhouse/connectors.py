@@ -184,7 +184,7 @@ class ClickhouseConnector(SQLConnector):
         for property_name, property_jsonschema in properties.items():
             is_primary_key = property_name in primary_keys
             sql_type = self.to_sql_type(property_jsonschema)
-            self.logger.info(f'info {property_name}, {property_jsonschema}')
+            self.logger.info(f'info {property_name}, {property_jsonschema}, {sql_type}')
             columns.append(
                 Column(
                     property_name,
