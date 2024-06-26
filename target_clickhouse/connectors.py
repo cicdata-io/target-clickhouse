@@ -183,6 +183,7 @@ class ClickhouseConnector(SQLConnector):
             raise RuntimeError(msg) from e
         for property_name, property_jsonschema in properties.items():
             is_primary_key = property_name in primary_keys
+            self.logger.info(f'info {property_name}, {property_jsonschema}')
             columns.append(
                 Column(
                     property_name,
